@@ -39,7 +39,7 @@ class LinkedList(BaseDS):
         return element
 
     def __goto(self, index: int):
-        if index > self.__len - 1: # TODO: GOTO 1 should raise error but not raising.
+        if index > self.__len - 1:
             raise OutOfBound(f"Cannot access element at {index}, try index within {self.__len - 1}")
         iter_ptr = self.__head
         counter_indx = 0
@@ -50,10 +50,16 @@ class LinkedList(BaseDS):
         if counter_indx == index:
             return iter_ptr
 
-    def append(self, node: Node):
-        return self.insert(node, index = self.__len)
+    def get_head(self) -> Node:
+        return self.__head
 
-    def insert(self, node: Node, index: int):
+    def get_tail(self) -> Node:
+        return self.__tail
+
+    def append(self, node: Node) -> None:
+        self.insert(node, index = self.__len)
+
+    def insert(self, node: Node, index: int) -> None:
         """
         :param node: Node to insert
         :param index: 0 based indexed position.
@@ -89,7 +95,7 @@ class LinkedList(BaseDS):
 
         return popped_data
 
-    def remove(self, position: int):
+    def remove(self, position: int) -> Node:
         if position == 0:
             raise ImmutableError("Head Node Cannot be removed...")
 
@@ -102,9 +108,3 @@ class LinkedList(BaseDS):
 
         self.__len -= 1
         return removable_element
-
-    def get_head(self):
-        return self.__head
-
-    def get_tail(self):
-        return self.__tail
