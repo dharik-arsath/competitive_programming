@@ -10,18 +10,19 @@ class TreeNode:
 
 
 class BaseTree(Protocol):
-    def push(self, element: TreeNode):
+    root: TreeNode
+
+    def push(self, node: TreeNode):
         ...
 
-    def remove(self, element: TreeNode):
+    def remove(self, node: TreeNode):
         ...
 
+    def get_node(self, element: Any):
+        ...
 
-if __name__ == "__main__":
-    n1 = TreeNode(1)
-    n2 = TreeNode(0)
-    n3 = TreeNode(3)
-    n1.left = n2
-    n1.right = n3
+    def get_height(self) -> int:
+        ...
 
-    n1.as_list()
+    def get_level(self) -> int:
+        ...
